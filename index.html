@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<body>
+
+<div ng-app="myApp" ng-controller="myCtrl"> 
+
+<p>Today's welcome message is:</p>
+
+<h1>{{myWelcome}}</h1>
+
+</div>
+
+<p>The $http service requests a page on the server, and the response is set as the value of the "myWelcome" variable.</p>
+
+<script>
+
+var app = angular.module('myApp', []);
+app.controller('myCtrl', function($scope, $http) {
+	$http.get("http://localhost:8000/create-post/", {headers:  {
+                'Authorization': 'Token e33a490954301ad2fe04db62fb677659afc2aaa1',
+                'Accept': 'application/json;odata=verbose',
+                'Access-Control-Allow-Origin': 'http://localhost:8000',
+            }
+        })
+		.then(function(response) {
+		$scope.myWelcome = response.data;
+	});
+});
+</script>
+
+</body>
+</html>

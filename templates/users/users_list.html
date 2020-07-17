@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block content %}
+	<div class="row">
+	{% for u in object_list %}
+
+		<div class="col-sm-6">
+			<div class="card">
+			  <div class="card-body">
+			    <h5 class="card-title">{{ u.username }}</h5>
+			    <p class="card-text">{{ u.email }}</p>
+			    <a href="#" class="btn btn-primary" id="{{ u.id }}" onClick="FollowUser(this.id)">Follow</a>
+                <a href="#" class="btn btn-danger" id="{{ u.id }}" onClick="UnFollowUser(this.id)">Unfollow</a>
+			  </div>
+			</div>
+		</div>
+	{% endfor %}
+	</div>
+
+{% endblock %}
+
+{% block js %}
+
+<script type="text/javascript">
+
+function FollowUser(id){
+    console.log('hello '+id);
+    data = {'csrfmiddlewaretoken': '{{ csrf_token }}', 'follow_to': id}
+    console.log('data is '+data);
+    $.ajax({
+        url: "{% url 'users:follow_user' %}",
+        type: "POST",
+        data:  data,
+        success: function(data){
+            alert("pass")
+        },
+        error: function(data){
+            alert("fail "+data);
+        }             
+    });
+};
+
+function UnFollowUser(id){
+    console.log('hello '+id);
+    data = {'csrfmiddlewaretoken': '{{ csrf_token }}', 'post': id}
+    console.log('data is '+data);
+    $.ajax({
+        url: "{% url 'users:unfollow_user' %}",
+        type: "POST",
+        data:  data,
+        success: function(data){
+            alert("pass")
+        },
+        error: function(data){
+            alert("fail "+data);
+        }             
+    });
+};
+
+</script>
+{% endblock %}

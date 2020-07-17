@@ -1,0 +1,42 @@
+@font-face {
+    font-family: 'oswald';
+    src: url('lato.thin.ttf');
+}
+
+@font-face {
+    font-family: 'selitta';
+    src: url('selitta.regular.ttf');
+}
+
+.card p,h5{
+	font-family: oswald;
+}
+
+.card p{
+	color: #000;
+}
+
+.card .card-footer .fa{
+	font-size: 16px;
+	color: #333;
+	text-shadow: 2px 2px 2px grey;
+	transition: width 2s, height 2s, transform 2s;
+}
+
+.card .card-footer .fa:hover{
+	font-size: 22px;
+	text-shadow: 5px 5px 5px #00823F;
+	transform: rotate(360deg);
+}
+
+.card .card-footer a{
+	color: #3d3d3d;
+	font-size: 14px;
+	padding-left: 10px;
+}
+
+.logo{
+	font-family: selitta;
+	font-size: 28px;
+	margin-bottom: -20px;
+}
